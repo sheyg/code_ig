@@ -12,10 +12,17 @@ body{
 ::selection{
   background: rgba(26,188,156,0.3);
 }
+
+#logologin{
+  width: 100px;
+  height: 100px;
+  margin: 20px 0 0 109px;
+}
+
 .container{
   max-width: 440px;
   padding: 0 20px;
-  margin: 170px auto;
+  margin: 100px 170px 170px 480px;
 }
 .wrapper{
   width: 100%;

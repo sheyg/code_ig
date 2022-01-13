@@ -3,19 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class Welcome extends CI_Controller {
 
-
 		public function __construct() {
 			parent:: __construct();
 			$this->load->model('Crud_model');
 		}
 
-		public function index()
+		function index()
 		{
 			$this->load->view('home');
 		}
 
 
-		public function RegisterNow()
+		function RegisterNow()
 		{
 			$this->Crud_model->createData();
 
@@ -23,15 +22,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 		}
 
-		public function Login()
+		function Login()
 		{
 			$this->load->view('login');	
 		}
 
+		public function Landing(){
+			$this->load->view('landing');	
+		}
+
+	function AboutFunction (){
+		$this->load->view('aboutview');
+	}
 
 	function Dashboard()
 	{
 		$this->load->view('dashboard');
+	}
+
+	function LogoutController(){
+		$this->session->unset_userdata(array('username','password'));
+        $this->session->sess_destroy();
+        redirect (base_url() . 'Welcome/Login');
 	}
 
 	public function loginnow()
@@ -44,9 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$password = $this->input->post('password');
 
 		if($this->form_validation->run()== FALSE){
-			// redirect (base_url() . 'Welcome/Login');
-			$this->load->view("login");
-
+			redirect (base_url() . 'Welcome/Login');
 		}
 		else{
 					
@@ -62,19 +72,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 				$this->session->set_flashdata('error', 'Invalid username and Password');
-				// redirect (base_url() . 'Welcome/Login');
-				$this->load->view("login");
+				redirect (base_url() . 'Welcome/Login');
 			}
 
 		 }
-
-		// else
-		// {
-		// 	echo "login";
-		// 	die();
-		// 	$this->load->view('login');
-		// }
-
 	}
 
 
